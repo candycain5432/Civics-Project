@@ -4,327 +4,1341 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Charles Leclerc: The Ferrari Ace</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Racing+Sans+One&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --ferrari-red: #DC0000;
+      --ferrari-dark: #1a0000;
+      --ferrari-yellow: #FFF200;
+      --dark-bg: #0a0a0a;
+      --card-bg: #141414;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --accent-gold: #FFD700;
+      --glass-bg: rgba(20, 20, 20, 0.7);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      line-height: 1.6;
+      direction: ltr;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%);
+    }
+
+    .bg-animation::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 20% 50%, rgba(220, 0, 0, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(255, 242, 0, 0.05) 0%, transparent 50%);
+      animation: bgMove 20s ease-in-out infinite;
+    }
+
+    @keyframes bgMove {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-50px, -50px); }
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      padding: 2rem 2rem 3rem;
+      background: linear-gradient(135deg, rgba(220, 0, 0, 0.1) 0%, rgba(10, 10, 10, 0.5) 100%);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(220, 0, 0, 0.2);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: rgba(220, 0, 0, 0.1);
+      border-radius: 20px;
+      padding: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid rgba(220, 0, 0, 0.3);
+    }
+
+    .logo:hover {
+      transform: scale(1.05) rotate(5deg);
+      box-shadow: 0 0 30px rgba(220, 0, 0, 0.5);
+    }
+
+    .title-section h1 {
+      font-family: 'Racing Sans One', sans-serif;
+      font-size: 3rem;
+      background: linear-gradient(135deg, #fff 0%, var(--ferrari-yellow) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .theme-toggle {
+      background: var(--glass-bg);
+      border: 1px solid rgba(220, 0, 0, 0.3);
+      color: var(--text-primary);
+      padding: 0.8rem 1.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: var(--ferrari-red);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(220, 0, 0, 0.4);
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(220, 0, 0, 0.1);
+      padding: 1rem 0;
+    }
+
+    nav ul {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+      padding: 0 2rem;
+    }
+
+    nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 80%;
+      height: 2px;
+      background: var(--ferrari-red);
+      transition: transform 0.3s ease;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--text-primary);
+      background: rgba(220, 0, 0, 0.1);
+    }
+
+    nav a:hover::after, nav a.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    /* Main Container */
+    main {
+      max-width: 1400px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    /* Grid Layout */
+    .propaganda-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    /* Card Styles */
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 2.5rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(220, 0, 0, 0.1) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(220, 0, 0, 0.3);
+      border-color: rgba(220, 0, 0, 0.4);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      filter: drop-shadow(0 0 10px currentColor);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Testimonial */
+    .testimonial-quote {
+      font-size: 1.2rem;
+      font-style: italic;
+      line-height: 1.8;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      padding-left: 1.5rem;
+      border-left: 4px solid var(--ferrari-yellow);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .testimonial-author {
+      color: var(--ferrari-yellow);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .testimonial-caption {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Bandwagon */
+    .bandwagon-content {
+      text-align: center;
+    }
+
+    .bandwagon-text {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      color: var(--text-primary);
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--ferrari-red) 0%, #ff0000 100%);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(220, 0, 0, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(220, 0, 0, 0.5);
+      background: linear-gradient(135deg, #ff0000 0%, var(--ferrari-red) 100%);
+    }
+
+    /* Name Calling */
+    .comparison-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .comparison-list li {
+      padding: 1rem 1.5rem;
+      background: rgba(220, 0, 0, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid var(--ferrari-red);
+      transition: all 0.3s ease;
+    }
+
+    .comparison-list li:hover {
+      background: rgba(220, 0, 0, 0.15);
+      transform: translateX(5px);
+    }
+
+    /* Glittering Generalities */
+    .inspiration-text {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .highlight {
+      color: var(--ferrari-yellow);
+      font-weight: 700;
+      text-shadow: 0 0 20px rgba(255, 242, 0, 0.5);
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      background: rgba(220, 0, 0, 0.1);
+      transform: scale(1.05);
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--ferrari-yellow);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Achievement List */
+    .achievement-list {
+      list-style: none;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .achievement-list li {
+      padding: 1rem 1.5rem;
+      background: rgba(255, 242, 0, 0.05);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .achievement-list li::before {
+      content: '🏆';
+      font-size: 1.5rem;
+    }
+
+    .achievement-list li:hover {
+      background: rgba(255, 242, 0, 0.15);
+      transform: translateX(5px);
+    }
+
+    /* Race Track Animation */
+    .race-track {
+      position: relative;
+      height: 100px;
+      background: linear-gradient(90deg, #222 0%, #111 50%, #222 100%);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 2rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .track-lines {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 30px,
+        rgba(255, 255, 255, 0.1) 30px,
+        rgba(255, 255, 255, 0.1) 40px
+      );
+    }
+
+    .race-car {
+      position: absolute;
+      left: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      filter: drop-shadow(0 0 10px rgba(220, 0, 0, 0.8));
+      transition: left 2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .race-car.animate {
+      left: calc(100% - 60px);
+    }
+
+    .finish-flag {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+    }
+
+    /* Plain Folks */
+    .plain-folks-content {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .plain-folks-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(220, 0, 0, 0.2) 0%, rgba(255, 242, 0, 0.1) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      border: 3px solid rgba(220, 0, 0, 0.3);
+    }
+
+    /* Full Width Card */
+    .full-width-card {
+      grid-column: 1 / -1;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(220, 0, 0, 0.2);
+      padding: 3rem 2rem;
+      margin-top: 5rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: var(--ferrari-yellow);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1.5rem;
+      border-radius: 8px;
+      background: rgba(220, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .footer-link:hover {
+      background: var(--ferrari-red);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--ferrari-yellow);
+      animation: confettiFall 3s ease-out forwards;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    @keyframes confettiFall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Night Mode */
+    body.night-mode {
+      --dark-bg: #f5f5f5;
+      --card-bg: #ffffff;
+      --text-primary: #1a1a1a;
+      --text-secondary: #666666;
+      --glass-bg: rgba(255, 255, 255, 0.9);
+    }
+
+    body.night-mode .bg-animation {
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #f5f5f5 100%);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .propaganda-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .title-section h1 {
+        font-size: 2rem;
+      }
+
+      nav ul {
+        gap: 0.5rem;
+      }
+
+      .plain-folks-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .plain-folks-image {
+        margin: 0 auto;
+      }
+
+      .timeline-item {
+        padding-left: 2rem;
+      }
+
+      .timeline-year {
+        font-size: 1rem;
+        width: 60px;
+      }
+    }
+
+    /* Timeline Styles */
+    .timeline {
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 80px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--ferrari-red), var(--ferrari-yellow));
+      box-shadow: 0 0 10px rgba(220, 0, 0, 0.5);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 140px;
+      padding-bottom: 3rem;
+      opacity: 0;
+      animation: slideInLeft 0.6s ease forwards;
+    }
+
+    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+    .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+    .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .timeline-year {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--ferrari-red), #ff0000);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 5px 20px rgba(220, 0, 0, 0.4);
+      border: 4px solid var(--dark-bg);
+      z-index: 2;
+    }
+
+    .timeline-content {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 1.5rem;
+      border-radius: 16px;
+      border-left: 4px solid var(--ferrari-yellow);
+      transition: all 0.3s ease;
+    }
+
+    .timeline-content:hover {
+      background: rgba(220, 0, 0, 0.1);
+      transform: translateX(10px);
+    }
+
+    .timeline-content h3 {
+      color: var(--ferrari-yellow);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .timeline-content p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
+  <div class="bg-animation"></div>
+
   <header>
-    <img src="https://images.seeklogo.com/logo-png/5/1/ferrari-logo-png_seeklogo-53764.png" alt="Ferrari Logo" class="logo" />
-    <h1>Charles Leclerc</h1>
-    <p class="subtitle">F1’s Next Legend • Ferrari’s Finest</p>
+    <div class="header-content">
+      <div class="logo-section">
+        <img src="https://images.seeklogo.com/logo-png/5/1/ferrari-logo-png_seeklogo-53764.png" alt="Ferrari Logo" class="logo" id="logo" />
+        <div class="title-section">
+          <h1>Charles Leclerc</h1>
+          <p class="subtitle">F1's Next Legend • Ferrari's Finest</p>
+        </div>
+      </div>
+      <button class="theme-toggle" id="themeToggle">☀️ Light Mode</button>
+    </div>
+    <p style="margin-top: 1rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+           This was made by William Cain as a project for my civics class.
+          </p>
   </header>
-  <nav class="main-nav">
+
+  <nav>
     <ul>
       <li><a href="#testimonial">Testimonial</a></li>
       <li><a href="#bandwagon">Bandwagon</a></li>
       <li><a href="#name-calling">Name Calling</a></li>
       <li><a href="#glittering">Inspiration</a></li>
-      <li><a href="#card-stacking">Achievements</a></li>
+      <li><a href="#achievements">Achievements</a></li>
       <li><a href="#live-stats">Live Stats</a></li>
       <li><a href="#plain-folks">Everyman</a></li>
+      <li><a href="#career">Career</a></li>
     </ul>
   </nav>
+
   <main>
     <div class="propaganda-grid">
-      <section id="testimonial" class="propaganda testimonial">
-        <div class="section-header">
-          <span class="icon">🗣️</span>
+      <!-- Testimonial -->
+      <div class="card" id="testimonial">
+        <div class="card-header">
+          <span class="card-icon">🗣️</span>
           <h2>Testimonial</h2>
         </div>
-        <figure>
-          <blockquote>
-            “Charles is one of the fastest and most talented drivers I’ve ever seen.”<br>
-            — Lewis Hamilton, 7x World Champion
+        <div class="card-content">
+          <blockquote class="testimonial-quote" id="quote">
+            "Charles is one of the fastest and most talented drivers I've ever seen."
           </blockquote>
-          <figcaption>— Endorsed by the Best</figcaption>
-        </figure>
-      </section>
+          <p class="testimonial-author" id="author">— Lewis Hamilton, 7x World Champion</p>
+          <p class="testimonial-caption" id="caption">Endorsed by the Best</p>
+        </div>
+      </div>
 
-      <section id="bandwagon" class="propaganda bandwagon">
-        <div class="section-header">
-          <span class="icon">🌍</span>
+      <!-- Bandwagon -->
+      <div class="card" id="bandwagon">
+        <div class="card-header">
+          <span class="card-icon">🌍</span>
           <h2>Bandwagon</h2>
         </div>
-        <p class="centerpiece">Join millions worldwide—Ferrari fans everywhere cheer for Leclerc. Don’t miss out. #ForzaCharles</p>
-        <a class="button-link" href="https://twitter.com/charles_leclerc" target="_blank" rel="noopener">
-          Support Charles
-        </a>
-      </section>
+        <div class="card-content bandwagon-content">
+          <p class="bandwagon-text">Join millions of passionate fans worldwide—from Monaco to Melbourne, from Italy to Japan, Ferrari supporters everywhere rally behind Charles Leclerc. The Tifosi have spoken, and they believe in #CL16. Don't miss out on being part of this historic journey. #ForzaCharles</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSelORDPeGoMaA4lCAwEwU2cTIEyHhPptopPkmoH8Y4x4xluEg/viewform?usp=header" target="_blank" class="cta-button">Take the Quiz</a>
+        </div>
+      </div>
 
-      <section id="name-calling" class="propaganda name-calling">
-        <div class="section-header">
-          <span class="icon">⚡</span>
+      <!-- Name Calling -->
+      <div class="card" id="name-calling">
+        <div class="card-header">
+          <span class="card-icon">⚡</span>
           <h2>Name Calling</h2>
         </div>
-        <ul>
-          <li>Some drivers choke; Charles delivers under pressure.</li>
-          <li>Forget reckless headlines—Leclerc is all class and skill.</li>
-        </ul>
-      </section>
+        <div class="card-content">
+          <ul class="comparison-list">
+            <li>Some drivers crumble under pressure; Charles thrives in the most intense moments of competition.</li>
+            <li>While critics focus on minor mistakes, Leclerc consistently outperforms expectations and delivers results.</li>
+            <li>Forget the drama and headlines—Charles is pure talent, dedication, and sportsmanship.</li>
+            <li>Other drivers play it safe; Leclerc pushes boundaries and redefines what's possible.</li>
+          </ul>
+        </div>
+      </div>
 
-      <section id="glittering" class="propaganda glittering">
-        <div class="section-header">
-          <span class="icon">✨</span>
+      <!-- Glittering Generalities -->
+      <div class="card" id="glittering">
+        <div class="card-header">
+          <span class="card-icon">✨</span>
           <h2>Inspiration</h2>
         </div>
-        <p>
-          <span class="gold">Fearless. Respected. Inspiring.</span> Leclerc races with honor and electrifies every paddock with hope for a new era.
-        </p>
-      </section>
-
-      <section id="card-stacking" class="propaganda card-stacking">
-        <div class="section-header">
-          <span class="icon">🏆</span>
-          <h2>Achievements</h2>
-        </div>
-        <div class="achievements-flex">
-          <div>
-            <h3>Grand Prix Wins</h3>
-            <span class="stat">6</span>
-          </div>
-          <div>
-            <h3>Pole Positions</h3>
-            <span class="stat">23</span>
-          </div>
-          <div>
-            <h3>Monaco’s Star</h3>
-            <span class="stat">2024</span>
-          </div>
-        </div>
-        <ul>
-          <li>Youngest Ferrari GP winner in decades</li>
-          <li>Outqualified all Ferrari teammates since joining</li>
-          <li>Formula 2 Champion in rookie season</li>
-        </ul>
-      </section>
-
-      <section id="live-stats" class="propaganda live-stats">
-        <div class="section-header">
-          <span class="icon">🏎️</span>
-          <h2>Live Stats</h2>
-        </div>
-        <div class="stats-flex">
-          <div class="stat-block">
-            <h3>Fastest Lap</h3>
-            <span class="stat stat-animate" data-value="1" data-suffix="m 32.7s">0</span>
-          </div>
-          <div class="stat-block">
-            <h3>Total Points</h3>
-            <span class="stat stat-animate" data-value="982">0</span>
-          </div>
-          <div class="stat-block">
-            <h3>Podiums</h3>
-            <span class="stat stat-animate" data-value="33">0</span>
-          </div>
-        </div>
-        <div class="f1-track">
-          <div class="f1-car">
-            <!-- Use your image here! Update the src as needed -->
-            <img src="Untitled design.png" alt="F1 Car" style="width:74px; height:44px; display:block;" />
-          </div>
-          <div class="f1-finish"></div>
-        </div>
-      </section>
-    </div>
-    <section id="plain-folks" class="propaganda plain-folks">
-      <div class="section-header">
-        <span class="icon">👨‍👩‍👦</span>
-        <h2>Everyman</h2>
-      </div>
-      <div class="folks-flex">
-        <img src="assets/leclerc-family.jpg" alt="Leclerc and Family" loading="lazy"/>
-        <div>
-          <p>
-            Raised in Monaco, Charles values family, plays piano, and streams games with friends. He’s just like us—except on Sundays.
+        <div class="card-content">
+          <p class="inspiration-text">
+            <span class="highlight">Fearless. Respected. Inspiring. Unstoppable.</span> Charles Leclerc races with honor, passion, and an unwavering commitment to excellence. He electrifies every paddock with hope for a new era of Ferrari greatness, reminding us that true champions are defined not just by victories, but by their character and relentless pursuit of perfection.
           </p>
         </div>
       </div>
-    </section>
+
+      <!-- Achievements -->
+      <div class="card full-width-card" id="achievements">
+        <div class="card-header">
+          <span class="card-icon">🏆</span>
+          <h2>Achievements</h2>
+        </div>
+        <div class="card-content">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-value" data-target="6">0</span>
+              <span class="stat-label">GP Wins</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" data-target="23">0</span>
+              <span class="stat-label">Pole Positions</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">2024</span>
+              <span class="stat-label">Monaco Winner</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" data-target="33">0</span>
+              <span class="stat-label">Podiums</span>
+            </div>
+          </div>
+          <ul class="achievement-list">
+            <li>Youngest Ferrari GP winner in decades</li>
+            <li>Outqualified all Ferrari teammates since joining</li>
+            <li>Formula 2 Champion in rookie season (2017)</li>
+            <li>Five consecutive pole positions in 2022</li>
+            <li>First Monegasque driver to win the Monaco Grand Prix (2024)</li>
+            <li>Multiple "Driver of the Day" awards throughout career</li>
+            <li>Consistent top-5 finisher with exceptional race pace</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Live Stats -->
+      <div class="card full-width-card" id="live-stats">
+        <div class="card-header">
+          <span class="card-icon">🏎️</span>
+          <h2>Live Stats</h2>
+        </div>
+        <div class="card-content">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-value">1:32.7</span>
+              <span class="stat-label">Fastest Lap</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" data-target="982">0</span>
+              <span class="stat-label">Total Points</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value" data-target="7">0</span>
+              <span class="stat-label">Seasons</span>
+            </div>
+          </div>
+          <div class="race-track" id="raceTrack">
+            <div class="track-lines"></div>
+            <div class="finish-flag">🏁</div>
+            <div class="race-car" id="raceCar">🏎️</div>
+          </div>
+          <p style="margin-top: 1rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
+            This has no relation to real-time data and is for illustrative purposes only. :)
+          </p>
+        </div>
+      </div>
+
+      <!-- Plain Folks -->
+      <div class="card full-width-card" id="plain-folks">
+        <div class="card-header">
+          <span class="card-icon">👨‍👩‍👦</span>
+          <h2>Everyman</h2>
+        </div>
+        <div class="card-content">
+          <div class="plain-folks-content">
+            <div class="plain-folks-image">👨‍👩‍👦</div>
+            <div>
+              <p>Born and raised in Monte Carlo, Monaco, Charles values family above all else. Despite his superstar status, he remains incredibly grounded. In his free time, he's an accomplished pianist who often shares his music with fans, a passionate gamer who streams on Twitch with friends, and a devoted dog lover.</p>
+              <p style="margin-top: 1rem;">Charles never forgets his roots—he races with the memory of his father Hervé and his godfather Jules Bianchi, both of whom inspired his journey. He's relatable, humble, and authentic—just like us, except on race days when he transforms into a champion who carries the hopes of millions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Career Timeline -->
+      <div class="card full-width-card" id="career">
+        <div class="card-header">
+          <span class="card-icon">📅</span>
+          <h2>Career Journey</h2>
+        </div>
+        <div class="card-content">
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-year">2016</div>
+              <div class="timeline-content">
+                <h3>GP3 Series Champion</h3>
+                <p>Dominated the GP3 Series with ART Grand Prix, winning the championship in his rookie season with 4 race victories.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2017</div>
+              <div class="timeline-content">
+                <h3>Formula 2 Champion</h3>
+                <p>Secured the FIA Formula 2 Championship in his first season, proving he was ready for Formula 1.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2018</div>
+              <div class="timeline-content">
+                <h3>F1 Debut with Sauber</h3>
+                <p>Made his F1 debut with Sauber (Alfa Romeo), scoring points in his first race in Australia and impressing throughout the season.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2019</div>
+              <div class="timeline-content">
+                <h3>Joins Scuderia Ferrari</h3>
+                <p>Fulfilled his childhood dream by joining Ferrari. Won his first two F1 races in Belgium and Italy (Monza)—an emotional victory for the Tifosi.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2022</div>
+              <div class="timeline-content">
+                <h3>Championship Contender</h3>
+                <p>Led the championship with multiple wins and showcased incredible qualifying pace with 5 consecutive pole positions.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-year">2024</div>
+              <div class="timeline-content">
+                <h3>Monaco Victory</h3>
+                <p>Achieved his lifelong dream by winning the Monaco Grand Prix in his home race, becoming the first Monegasque winner since 1931.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
+
   <footer>
-    <p>&copy; 2025 Forza Ferrari — Unofficial Fan Site</p>
-    <div class="footer-links">
-      <a href="https://www.charlesleclerc.com" target="_blank" rel="noopener" class="footer-link">Official Site</a>
-      <span class="divider"></span>
-      <a href="https://discord.gg/charles-leclerc" target="_blank" rel="noopener" class="footer-link">Community Chat</a>
+    <div class="footer-content">
+      <p>&copy; 2025 Forza Ferrari — Unofficial Fan Site</p>
+      <div class="footer-links">
+        <a href="https://www.charlesleclerc.com" target="_blank" class="footer-link">Official Site</a>
+        <a href="#" class="footer-link">Community Chat</a>
+        <a href="#" class="footer-link">Fan Gallery</a>
+      </div>
     </div>
   </footer>
-  <script src="script.js"></script>
+
+  <script>
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('night-mode');
+      themeToggle.textContent = document.body.classList.contains('night-mode') ? '🌙 Dark Mode' : '☀️ Light Mode';
+    });
+
+    // Logo Confetti
+    const logo = document.getElementById('logo');
+    logo.addEventListener('click', () => {
+      for (let i = 0; i < 50; i++) {
+        setTimeout(() => {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = `${logo.getBoundingClientRect().left + Math.random() * 80}px`;
+          confetti.style.top = `${logo.getBoundingClientRect().top + window.scrollY}px`;
+          confetti.style.background = `hsl(${Math.random() * 360}, 70%, 50%)`;
+          document.body.appendChild(confetti);
+          setTimeout(() => confetti.remove(), 3000);
+        }, i * 30);
+      }
+    });
+
+    // Animated Counters
+    function animateCounter(el, target) {
+      let current = 0;
+      const increment = target / 50;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 30);
+    }
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statValues = entry.target.querySelectorAll('.stat-value[data-target]');
+          statValues.forEach(stat => {
+            const target = parseInt(stat.dataset.target);
+            animateCounter(stat, target);
+          });
+          
+          if (entry.target.id === 'live-stats') {
+            setTimeout(() => {
+              document.getElementById('raceCar').classList.add('animate');
+            }, 500);
+          }
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+    // Testimonial Rotator
+    const testimonials = [
+      {
+        quote: '"Charles is one of the fastest and most talented drivers I\'ve ever seen."',
+        author: '— Lewis Hamilton, 7x World Champion',
+        caption: 'Endorsed by the Best'
+      },
+      {
+        quote: '"He\'s the future of F1 and Ferrari\'s most passionate racer."',
+        author: '— Mattia Binotto, Former Ferrari Team Principal',
+        caption: 'Praise from the Pitwall'
+      },
+      {
+        quote: '"Leclerc inspires us all—on and off the track."',
+        author: '— F1 Journal',
+        caption: 'Media Acclaim'
+      },
+      {
+        quote: '"Charles has the raw speed and mental strength to become a multiple world champion."',
+        author: '— Sebastian Vettel, 4x World Champion',
+        caption: 'Champions Recognize Champions'
+      }
+    ];
+
+    let currentTestimonial = 0;
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      const quote = document.getElementById('quote');
+      const author = document.getElementById('author');
+      const caption = document.getElementById('caption');
+      
+      quote.style.opacity = '0';
+      author.style.opacity = '0';
+      caption.style.opacity = '0';
+      
+      setTimeout(() => {
+        quote.textContent = testimonials[currentTestimonial].quote;
+        author.textContent = testimonials[currentTestimonial].author;
+        caption.textContent = testimonials[currentTestimonial].caption;
+        quote.style.opacity = '1';
+        author.style.opacity = '1';
+        caption.style.opacity = '1';
+      }, 300);
+    }, 5000);
+
+    // Active Nav on Scroll
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = Array.from(navLinks).map(link => 
+      document.querySelector(link.getAttribute('href'))
+    );
+
+    function updateActiveNav() {
+      let current = '';
+      sections.forEach(section => {
+        if (section) {
+          const sectionTop = section.offsetTop;
+          if (window.scrollY >= sectionTop - 200) {
+            current = section.getAttribute('id');
+          }
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+
+    // Smooth scroll for nav links
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Add transition styles for testimonial
+    document.getElementById('quote').style.transition = 'opacity 0.3s ease';
+    document.getElementById('author').style.transition = 'opacity 0.3s ease';
+    document.getElementById('caption').style.transition = 'opacity 0.3s ease';
+
+    // Parallax effect for cards
+    document.addEventListener('mousemove', (e) => {
+      const cards = document.querySelectorAll('.card');
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+
+      cards.forEach((card, index) => {
+        const depth = (index % 3 + 1) * 5;
+        const moveX = (mouseX - 0.5) * depth;
+        const moveY = (mouseY - 0.5) * depth;
+        card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+    });
+
+    // Easter egg: Konami code
+    let konamiCode = [];
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
+    
+    document.addEventListener('keydown', (e) => {
+      konamiCode.push(e.key);
+      konamiCode = konamiCode.slice(-10);
+      
+      if (konamiCode.join(',') === konamiSequence.join(',')) {
+        triggerFerrariMode();
+      }
+    });
+
+    function triggerFerrariMode() {
+      const body = document.body;
+      body.style.animation = 'rainbow 2s infinite';
+      
+      // Create style for rainbow animation if it doesn't exist
+      if (!document.getElementById('rainbow-style')) {
+        const style = document.createElement('style');
+        style.id = 'rainbow-style';
+        style.textContent = `
+          @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+      
+      // Add racing emojis going LEFT (from right to left)
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const emoji = document.createElement('div');
+          emoji.textContent = '🏎️';
+          emoji.style.position = 'fixed';
+          emoji.style.fontSize = '3rem';
+          emoji.style.right = '-100px';
+          emoji.style.top = `${Math.random() * window.innerHeight}px`;
+          emoji.style.zIndex = '9999';
+          emoji.style.pointerEvents = 'none';
+          emoji.style.animation = 'raceAcrossLeft 2s linear forwards';
+          document.body.appendChild(emoji);
+          
+          setTimeout(() => emoji.remove(), 2000);
+        }, i * 100);
+      }
+      
+      // Add animation style for right to left movement
+      if (!document.getElementById('race-style')) {
+        const raceStyle = document.createElement('style');
+        raceStyle.id = 'race-style';
+        raceStyle.textContent = `
+          @keyframes raceAcrossLeft {
+            0% { right: -100px; transform: translateX(0); }
+            100% { right: 100%; transform: translateX(100px); }
+          }
+        `;
+        document.head.appendChild(raceStyle);
+      }
+      
+      setTimeout(() => {
+        body.style.animation = '';
+      }, 4000);
+    }
+
+    // Add scroll progress indicator
+    const progressBar = document.createElement('div');
+    progressBar.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ferrari-red), var(--ferrari-yellow));
+      z-index: 9999;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px rgba(220, 0, 0, 0.5);
+    `;
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + '%';
+    });
+
+    // Add particle system on hover over cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        createParticles(card);
+      });
+    });
+
+    function createParticles(element) {
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          const particle = document.createElement('div');
+          particle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--ferrari-yellow);
+            border-radius: 50%;
+            pointer-events: none;
+            top: ${Math.random() * 100}%;
+            left: ${Math.random() * 100}%;
+            animation: particleFade 1s ease-out forwards;
+          `;
+          
+          if (!document.getElementById('particle-style')) {
+            const particleStyle = document.createElement('style');
+            particleStyle.id = 'particle-style';
+            particleStyle.textContent = `
+              @keyframes particleFade {
+                0% {
+                  opacity: 1;
+                  transform: translateY(0) scale(1);
+                }
+                100% {
+                  opacity: 0;
+                  transform: translateY(-50px) scale(0);
+                }
+              }
+            `;
+            document.head.appendChild(particleStyle);
+          }
+          
+          element.appendChild(particle);
+          setTimeout(() => particle.remove(), 1000);
+        }, i * 50);
+      }
+    }
+
+    // Add typing effect for inspiration text
+    const inspirationText = document.querySelector('.inspiration-text');
+    if (inspirationText) {
+      const originalText = inspirationText.innerHTML;
+      inspirationText.innerHTML = '';
+      
+      const observer2 = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            let index = 0;
+            const interval = setInterval(() => {
+              if (index < originalText.length) {
+                inspirationText.innerHTML = originalText.slice(0, index + 1);
+                index++;
+              } else {
+                clearInterval(interval);
+              }
+            }, 30);
+            observer2.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer2.observe(inspirationText.closest('.card'));
+    }
+
+    // Add shake effect to CTA button
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+      setInterval(() => {
+        ctaButton.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          ctaButton.style.animation = '';
+        }, 500);
+      }, 8000);
+      
+      if (!document.getElementById('shake-style')) {
+        const shakeStyle = document.createElement('style');
+        shakeStyle.id = 'shake-style';
+        shakeStyle.textContent = `
+          @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+          }
+        `;
+        document.head.appendChild(shakeStyle);
+      }
+    }
+
+    // Add glowing cursor trail
+    let cursorTrail = [];
+    document.addEventListener('mousemove', (e) => {
+      if (cursorTrail.length > 10) {
+        const oldTrail = cursorTrail.shift();
+        oldTrail.remove();
+      }
+
+      const trail = document.createElement('div');
+      trail.style.cssText = `
+        position: fixed;
+        width: 6px;
+        height: 6px;
+        background: radial-gradient(circle, var(--ferrari-red), transparent);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        left: ${e.clientX}px;
+        top: ${e.clientY}px;
+        animation: trailFade 0.5s ease-out forwards;
+      `;
+      
+      if (!document.getElementById('trail-style')) {
+        const trailStyle = document.createElement('style');
+        trailStyle.id = 'trail-style';
+        trailStyle.textContent = `
+          @keyframes trailFade {
+            0% { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
+          }
+        `;
+        document.head.appendChild(trailStyle);
+      }
+      
+      document.body.appendChild(trail);
+      cursorTrail.push(trail);
+      
+      setTimeout(() => trail.remove(), 500);
+    });
+  </script>
 </body>
 </html>
-<script>// ==== 1. Navbar Highlight on Scroll ====
-document.addEventListener("DOMContentLoaded", () => {
-  const navLinks = document.querySelectorAll('.main-nav a');
-  const sections = Array.from(navLinks).map(link =>
-    document.querySelector(link.getAttribute('href'))
-  );
-
-  function onScroll() {
-    const scrollY = window.scrollY + 120;
-    let activeIndex = 0;
-    sections.forEach((section, i) => {
-      if (section && section.offsetTop <= scrollY) activeIndex = i;
-    });
-    navLinks.forEach((link, i) =>
-      link.classList.toggle('active-nav', i === activeIndex)
-    );
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // Set initial state
-});
-
-// ==== 2. Theme Switcher ====
-(function() {
-  // Add button to header
-  const header = document.querySelector('header');
-  const btn = document.createElement('button');
-  btn.textContent = "🌙 Night Mode";
-  btn.className = 'theme-switcher';
-  btn.ariaLabel = 'Toggle Monaco Night Mode';
-  btn.style.position = 'absolute';
-  btn.style.right = '25px';
-  btn.style.top = '25px';
-  header.appendChild(btn);
-
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('night-mode');
-    btn.textContent = document.body.classList.contains('night-mode') ? "☀️ Ferrari Mode" : "🌙 Night Mode";
-  });
-})();
-
-// ==== 3. Confetti Animation on Logo Click ====
-(function confettiOnLogo() {
-  function createConfettiPiece(x, y) {
-    const confetti = document.createElement('div');
-    confetti.className = 'confetti';
-    confetti.style.left = `${x}px`;
-    confetti.style.top = `${y}px`;
-    confetti.style.background = `hsl(${Math.floor(Math.random()*360)}, 90%, 55%)`;
-    confetti.style.transform = `rotate(${Math.random()*360}deg)`;
-    document.body.appendChild(confetti);
-    setTimeout(() => document.body.removeChild(confetti), 1600);
-  }
-
-  const logo = document.querySelector('.logo');
-  logo.style.cursor = 'pointer';
-  logo.title = 'Click for celebration!';
-
-  logo.addEventListener('click', (e) => {
-    for (let i = 0; i < 36; i++) {
-      setTimeout(() => {
-        const x = logo.getBoundingClientRect().left + logo.width / 2 + Math.random()*40 - 20;
-        const y = logo.getBoundingClientRect().top + logo.height / 2 + window.scrollY;
-        createConfettiPiece(x, y);
-      }, i*15);
-    }
-  });
-})();
-
-// ==== 4. Animated Counter for Achievements ====
-(function runCountersOnceVisible() {
-  function animateCount(el, max) {
-    let duration = 1200, start = 0, now = 0, startTs = null;
-    function step(ts) {
-      if (!startTs) startTs = ts;
-      const progress = Math.min((ts - startTs) / duration, 1);
-      now = Math.floor(progress * max);
-      el.textContent = now;
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = max; // ensure the final value
-    }
-    requestAnimationFrame(step);
-  }
-
-  let once = false;
-  function revealCounters() {
-    if (once) return;
-    const stats = document.querySelectorAll('.card-stacking .stat');
-    const rect = document.querySelector('.card-stacking').getBoundingClientRect();
-    if (rect.top < window.innerHeight - 80) {
-      stats.forEach(stat => animateCount(stat, +stat.textContent));
-      once = true;
-    }
-  }
-  window.addEventListener('scroll', revealCounters, { passive: true });
-  revealCounters();
-})();
-
-// ==== 5. Testimonial Rotator ====
-(function rotatingTestimonial() {
-  const quotes = [
-    {
-      text: "“Charles is one of the fastest and most talented drivers I’ve ever seen.”",
-      author: "— Lewis Hamilton, 7x World Champion",
-      caption: "— Endorsed by the Best"
-    },
-    {
-      text: "“He’s the future of F1 and Ferrari’s most passionate racer.”",
-      author: "— Mattia Binotto, Former Ferrari Team Principal",
-      caption: "— Praise from the Pitwall"
-    },
-    {
-      text: "“Leclerc inspires us all—on and off the track.”",
-      author: "— F1 Journal",
-      caption: "— Media Acclaim"
-    },
-  ];
-  const block = document.querySelector('#testimonial blockquote');
-  const figcap = document.querySelector('#testimonial figcaption');
-  let idx = 0;
-  setInterval(() => {
-    idx = (idx + 1) % quotes.length;
-    block.innerHTML = `${quotes[idx].text}<br>${quotes[idx].author}`;
-    figcap.textContent = quotes[idx].caption;
-  }, 5400);
-})();
-
-// ==== 6. Animated Live Stats + F1 Animation ====
-(function animatedStatsAndF1() {
-  let played = false;
-
-  function animateStatValue(el) {
-    const max = +el.dataset.value;
-    const suffix = el.dataset.suffix || "";
-    let duration = 1100, startTs = null;
-
-    function step(ts) {
-      if (!startTs) startTs = ts;
-      const progress = Math.min((ts - startTs) / duration, 1);
-      let val = Math.floor(progress * max);
-      // If it's fastest lap, animate the seconds (optional enhancement)
-      if (suffix && max < 10) {
-        // animate time, ex: 1m 32.7s
-        val = progress * max;
-        el.textContent = val === 0 ? `0${suffix}` :
-          `${Math.floor(val)}${suffix}`;
-      } else {
-        el.textContent = val + suffix;
-      }
-      if (progress < 1) requestAnimationFrame(step);
-      else el.textContent = max + suffix;
-    }
-    requestAnimationFrame(step);
-  }
-
-  function revealStats() {
-    if (played) return;
-    const section = document.querySelector('.live-stats');
-    if (!section) return;
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 80) {
-      played = true;
-      const statEls = section.querySelectorAll('.stat-animate');
-      statEls.forEach(animateStatValue);
-
-      // F1 car animation, slight delay for drama!
-      const car = section.querySelector('.f1-car');
-      setTimeout(() => {
-        car.classList.add('f1-animate');
-      }, 1250);
-    }
-  }
-  window.addEventListener('scroll', revealStats, { passive: true });
-  revealStats();
-})();
-
-</script>
