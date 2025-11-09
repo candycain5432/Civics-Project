@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Charles Leclerc: The Ferrari Ace</title>
+  <title>Charles Leclerc: The Ferrari Ace - Propaganda Campaign</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Racing+Sans+One&display=swap');
 
@@ -31,10 +31,8 @@
       color: var(--text-primary);
       overflow-x: hidden;
       line-height: 1.6;
-      direction: ltr;
     }
 
-    /* Animated Background */
     .bg-animation {
       position: fixed;
       top: 0;
@@ -60,7 +58,6 @@
       50% { transform: translate(-50px, -50px); }
     }
 
-    /* Header */
     header {
       position: relative;
       padding: 2rem 2rem 3rem;
@@ -119,26 +116,14 @@
       letter-spacing: 1px;
     }
 
-    .theme-toggle {
-      background: var(--glass-bg);
-      border: 1px solid rgba(220, 0, 0, 0.3);
-      color: var(--text-primary);
-      padding: 0.8rem 1.5rem;
-      border-radius: 12px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
+    .project-credit {
+      margin-top: 1rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      width: 100%;
     }
 
-    .theme-toggle:hover {
-      background: var(--ferrari-red);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 20px rgba(220, 0, 0, 0.4);
-    }
-
-    /* Navigation */
     nav {
       position: sticky;
       top: 0;
@@ -192,34 +177,39 @@
       transform: translateX(-50%) scaleX(1);
     }
 
-    /* Main Container */
     main {
       max-width: 1400px;
       margin: 4rem auto;
       padding: 0 2rem;
     }
 
-    /* Grid Layout */
-    .propaganda-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
+    .section {
+      margin-bottom: 4rem;
+      scroll-margin-top: 100px;
     }
 
-    /* Card Styles */
-    .card {
+    .section-title {
+      font-size: 2.5rem;
+      font-family: 'Racing Sans One', sans-serif;
+      color: var(--ferrari-yellow);
+      text-align: center;
+      margin-bottom: 3rem;
+      text-shadow: 0 0 20px rgba(255, 242, 0, 0.3);
+    }
+
+    .propaganda-card {
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 24px;
       padding: 2.5rem;
+      margin-bottom: 2rem;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
     }
 
-    .card::before {
+    .propaganda-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -231,13 +221,13 @@
       transition: opacity 0.4s ease;
     }
 
-    .card:hover {
+    .propaganda-card:hover {
       transform: translateY(-8px);
       box-shadow: 0 20px 60px rgba(220, 0, 0, 0.3);
       border-color: rgba(220, 0, 0, 0.4);
     }
 
-    .card:hover::before {
+    .propaganda-card:hover::before {
       opacity: 1;
     }
 
@@ -246,6 +236,8 @@
       align-items: center;
       gap: 1rem;
       margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
     }
 
     .card-icon {
@@ -253,64 +245,73 @@
       filter: drop-shadow(0 0 10px currentColor);
     }
 
-    .card h2 {
-      font-size: 1.5rem;
+    .card-title {
+      font-size: 1.8rem;
       font-weight: 700;
-      color: var(--text-primary);
+      color: var(--ferrari-yellow);
       letter-spacing: 1px;
+    }
+
+    .technique-label {
+      display: inline-block;
+      background: rgba(220, 0, 0, 0.2);
+      color: var(--ferrari-yellow);
+      padding: 0.3rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-left: auto;
+      border: 1px solid rgba(255, 242, 0, 0.3);
     }
 
     .card-content {
       position: relative;
       z-index: 1;
+      font-size: 1.1rem;
+      line-height: 1.8;
     }
 
-    /* Testimonial */
-    .testimonial-quote {
+    .identification-box {
+      background: rgba(255, 242, 0, 0.05);
+      border-left: 4px solid var(--ferrari-yellow);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+    }
+
+    .identification-box h3 {
+      color: var(--ferrari-yellow);
       font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .identification-box p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    blockquote {
+      font-size: 1.3rem;
       font-style: italic;
       line-height: 1.8;
       color: var(--text-primary);
       margin-bottom: 1.5rem;
       padding-left: 1.5rem;
       border-left: 4px solid var(--ferrari-yellow);
-      opacity: 0;
-      animation: fadeInUp 0.6s ease forwards;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .testimonial-author {
+    .author {
       color: var(--ferrari-yellow);
       font-weight: 600;
-      font-size: 1rem;
-    }
-
-    .testimonial-caption {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-    }
-
-    /* Bandwagon */
-    .bandwagon-content {
-      text-align: center;
+      font-size: 1.1rem;
+      margin-top: 1rem;
     }
 
     .bandwagon-text {
       font-size: 1.2rem;
+      text-align: center;
       margin-bottom: 2rem;
       line-height: 1.8;
-      color: var(--text-primary);
     }
 
     .cta-button {
@@ -326,6 +327,7 @@
       box-shadow: 0 5px 20px rgba(220, 0, 0, 0.3);
       border: none;
       cursor: pointer;
+      text-align: center;
     }
 
     .cta-button:hover {
@@ -334,7 +336,6 @@
       background: linear-gradient(135deg, #ff0000 0%, var(--ferrari-red) 100%);
     }
 
-    /* Name Calling */
     .comparison-list {
       list-style: none;
       display: flex;
@@ -348,6 +349,7 @@
       border-radius: 12px;
       border-left: 4px solid var(--ferrari-red);
       transition: all 0.3s ease;
+      font-size: 1.1rem;
     }
 
     .comparison-list li:hover {
@@ -355,25 +357,18 @@
       transform: translateX(5px);
     }
 
-    /* Glittering Generalities */
-    .inspiration-text {
-      font-size: 1.3rem;
-      line-height: 1.8;
-      text-align: center;
-    }
-
     .highlight {
       color: var(--ferrari-yellow);
       font-weight: 700;
       text-shadow: 0 0 20px rgba(255, 242, 0, 0.5);
+      font-size: 1.3rem;
     }
 
-    /* Stats */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
-      margin-bottom: 2rem;
+      margin: 2rem 0;
     }
 
     .stat-item {
@@ -406,11 +401,27 @@
       letter-spacing: 1px;
     }
 
-    /* Achievement List */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
     .achievement-list {
       list-style: none;
       display: grid;
       gap: 1rem;
+      margin-top: 1.5rem;
     }
 
     .achievement-list li {
@@ -421,6 +432,7 @@
       align-items: center;
       gap: 1rem;
       transition: all 0.3s ease;
+      font-size: 1.05rem;
     }
 
     .achievement-list li::before {
@@ -433,53 +445,6 @@
       transform: translateX(5px);
     }
 
-    /* Race Track Animation */
-    .race-track {
-      position: relative;
-      height: 100px;
-      background: linear-gradient(90deg, #222 0%, #111 50%, #222 100%);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-top: 2rem;
-      border: 2px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .track-lines {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: repeating-linear-gradient(
-        90deg,
-        transparent 0px,
-        transparent 30px,
-        rgba(255, 255, 255, 0.1) 30px,
-        rgba(255, 255, 255, 0.1) 40px
-      );
-    }
-
-    .race-car {
-      position: absolute;
-      left: -100px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 3rem;
-      filter: drop-shadow(0 0 10px rgba(220, 0, 0, 0.8));
-      transition: left 2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .race-car.animate {
-      left: calc(100% - 60px);
-    }
-
-    .finish-flag {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 2rem;
-    }
-
-    /* Plain Folks */
     .plain-folks-content {
       display: grid;
       grid-template-columns: 200px 1fr;
@@ -499,12 +464,6 @@
       border: 3px solid rgba(220, 0, 0, 0.3);
     }
 
-    /* Full Width Card */
-    .full-width-card {
-      grid-column: 1 / -1;
-    }
-
-    /* Footer */
     footer {
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
@@ -543,47 +502,7 @@
       transform: translateY(-2px);
     }
 
-    /* Confetti */
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      background: var(--ferrari-yellow);
-      animation: confettiFall 3s ease-out forwards;
-      pointer-events: none;
-      z-index: 1000;
-    }
-
-    @keyframes confettiFall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    /* Night Mode */
-    body.night-mode {
-      --dark-bg: #f5f5f5;
-      --card-bg: #ffffff;
-      --text-primary: #1a1a1a;
-      --text-secondary: #666666;
-      --glass-bg: rgba(255, 255, 255, 0.9);
-    }
-
-    body.night-mode .bg-animation {
-      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #f5f5f5 100%);
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .propaganda-grid {
-        grid-template-columns: 1fr;
-      }
-
       .header-content {
         flex-direction: column;
         text-align: center;
@@ -606,101 +525,9 @@
         margin: 0 auto;
       }
 
-      .timeline-item {
-        padding-left: 2rem;
+      .propaganda-card {
+        padding: 1.5rem;
       }
-
-      .timeline-year {
-        font-size: 1rem;
-        width: 60px;
-      }
-    }
-
-    /* Timeline Styles */
-    .timeline {
-      position: relative;
-      padding: 2rem 0;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 80px;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, var(--ferrari-red), var(--ferrari-yellow));
-      box-shadow: 0 0 10px rgba(220, 0, 0, 0.5);
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-left: 140px;
-      padding-bottom: 3rem;
-      opacity: 0;
-      animation: slideInLeft 0.6s ease forwards;
-    }
-
-    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
-    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
-    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
-    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
-    .timeline-item:nth-child(5) { animation-delay: 0.5s; }
-    .timeline-item:nth-child(6) { animation-delay: 0.6s; }
-
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-
-    .timeline-year {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 70px;
-      height: 70px;
-      background: linear-gradient(135deg, var(--ferrari-red), #ff0000);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: white;
-      box-shadow: 0 5px 20px rgba(220, 0, 0, 0.4);
-      border: 4px solid var(--dark-bg);
-      z-index: 2;
-    }
-
-    .timeline-content {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1.5rem;
-      border-radius: 16px;
-      border-left: 4px solid var(--ferrari-yellow);
-      transition: all 0.3s ease;
-    }
-
-    .timeline-content:hover {
-      background: rgba(220, 0, 0, 0.1);
-      transform: translateX(10px);
-    }
-
-    .timeline-content h3 {
-      color: var(--ferrari-yellow);
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-      font-weight: 700;
-    }
-
-    .timeline-content p {
-      color: var(--text-secondary);
-      line-height: 1.6;
     }
   </style>
 </head>
@@ -716,89 +543,136 @@
           <p class="subtitle">F1's Next Legend • Ferrari's Finest</p>
         </div>
       </div>
-      <button class="theme-toggle" id="themeToggle">☀️ Light Mode</button>
+      <p class="project-credit">Propaganda Campaign Project by William Cain<br>Civics Class</p>
     </div>
-    <p style="margin-top: 1rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
-           This was made by William Cain as a project for my civics class.
-          </p>
   </header>
 
   <nav>
     <ul>
-      <li><a href="#testimonial">Testimonial</a></li>
-      <li><a href="#bandwagon">Bandwagon</a></li>
-      <li><a href="#name-calling">Name Calling</a></li>
-      <li><a href="#glittering">Inspiration</a></li>
-      <li><a href="#achievements">Achievements</a></li>
-      <li><a href="#live-stats">Live Stats</a></li>
-      <li><a href="#plain-folks">Everyman</a></li>
-      <li><a href="#career">Career</a></li>
+      <li><a href="#testimonial">1. Testimonial</a></li>
+      <li><a href="#bandwagon">2. Bandwagon</a></li>
+      <li><a href="#name-calling">3. Name Calling</a></li>
+      <li><a href="#glittering">4. Glittering Generalities</a></li>
+      <li><a href="#card-stacking">5. Card Stacking</a></li>
+      <li><a href="#plain-folks">6. Plain Folks</a></li>
     </ul>
   </nav>
 
   <main>
-    <div class="propaganda-grid">
-      <!-- Testimonial -->
-      <div class="card" id="testimonial">
+    <!-- TECHNIQUE 1: TESTIMONIAL -->
+    <section class="section" id="testimonial">
+      <h2 class="section-title">Campaign Technique #1</h2>
+      <div class="propaganda-card">
         <div class="card-header">
           <span class="card-icon">🗣️</span>
-          <h2>Testimonial</h2>
+          <h3 class="card-title">Testimonial</h3>
+          <span class="technique-label">Technique #1</span>
         </div>
         <div class="card-content">
-          <blockquote class="testimonial-quote" id="quote">
-            "Charles is one of the fastest and most talented drivers I've ever seen."
+          <blockquote id="quote">
+            "Charles is one of the fastest and most talented drivers I've ever seen. His racecraft and determination remind me of the great champions."
           </blockquote>
-          <p class="testimonial-author" id="author">— Lewis Hamilton, 7x World Champion</p>
-          <p class="testimonial-caption" id="caption">Endorsed by the Best</p>
+          <p class="author" id="author">— Lewis Hamilton, 7-time World Champion</p>
+          <p style="margin-top: 1rem; color: var(--text-secondary);" id="caption">
+            Endorsed by legends. Respected by rivals. Charles Leclerc has earned praise from the greatest names in motorsport.
+          </p>
+        </div>
+        
+        <div class="identification-box">
+          <h3>📋 Technique Identification: Testimonial</h3>
+          <p><strong>How it works:</strong> This technique uses an endorsement from diffrent F1 drivers, to add credibility to Charles Leclerc. By having a famous person praise Leclerc, it makes the audience more likely to believe he is truly talented.</p>
+          <p style="margin-top: 0.8rem;"><strong>Persuasive effect:</strong> If one of the greatest drivers in F1 history endorses Leclerc, then he must be exceptional. The testimonial transfers the drivers credibility and reputation onto Leclerc.</p>
         </div>
       </div>
+    </section>
 
-      <!-- Bandwagon -->
-      <div class="card" id="bandwagon">
+    <!-- TECHNIQUE 2: BANDWAGON -->
+    <section class="section" id="bandwagon">
+      <h2 class="section-title">Campaign Technique #2</h2>
+      <div class="propaganda-card">
         <div class="card-header">
           <span class="card-icon">🌍</span>
-          <h2>Bandwagon</h2>
+          <h3 class="card-title">Bandwagon</h3>
+          <span class="technique-label">Technique #2</span>
         </div>
-        <div class="card-content bandwagon-content">
-          <p class="bandwagon-text">Join millions of passionate fans worldwide—from Monaco to Melbourne, from Italy to Japan, Ferrari supporters everywhere rally behind Charles Leclerc. The Tifosi have spoken, and they believe in #CL16. Don't miss out on being part of this historic journey. #ForzaCharles</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSelORDPeGoMaA4lCAwEwU2cTIEyHhPptopPkmoH8Y4x4xluEg/viewform?usp=header" target="_blank" class="cta-button">Take the Quiz</a>
+        <div class="card-content">
+          <p class="bandwagon-text">
+            Join millions of passionate fans worldwide—from Monaco to Melbourne, from Italy to Japan. Ferrari supporters everywhere rally behind Charles Leclerc. The Tifosi have spoken, and they believe in #CL16. Don't miss out on being part of this historic journey. Everyone is supporting Charles—will you join them?
+          </p>
+          <div style="text-align: center;">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSelORDPeGoMaA4lCAwEwU2cTIEyHhPptopPkmoH8Y4x4xluEg/viewform?usp=header" target="_blank" class="cta-button">Join the Movement - Take the Quiz!</a>
+          </div>
+        </div>
+        
+        <div class="identification-box">
+          <h3>📋 Technique Identification: Bandwagon</h3>
+          <p><strong>How it works:</strong> This technique creates the impression that "everyone" is already supporting Charles Leclerc. It mentions fans from multiple countries and uses phrases like "millions of passionate fans" and "Don't miss out" to pressure people into joining.</p>
+          <p style="margin-top: 0.8rem;"><strong>Persuasive effect:</strong> People naturally want to be part of popular movements and fear missing out. By suggesting that supporting Leclerc is what everyone else is doing, it encourages people to follow the crowd rather than think critically.</p>
         </div>
       </div>
+    </section>
 
-      <!-- Name Calling -->
-      <div class="card" id="name-calling">
+    <!-- TECHNIQUE 3: NAME CALLING -->
+    <section class="section" id="name-calling">
+      <h2 class="section-title">Campaign Technique #3</h2>
+      <div class="propaganda-card">
         <div class="card-header">
           <span class="card-icon">⚡</span>
-          <h2>Name Calling</h2>
+          <h3 class="card-title">Name Calling</h3>
+          <span class="technique-label">Technique #3</span>
         </div>
         <div class="card-content">
           <ul class="comparison-list">
-            <li>Some drivers crumble under pressure; Charles thrives in the most intense moments of competition.</li>
-            <li>While critics focus on minor mistakes, Leclerc consistently outperforms expectations and delivers results.</li>
-            <li>Forget the drama and headlines—Charles is pure talent, dedication, and sportsmanship.</li>
-            <li>Other drivers play it safe; Leclerc pushes boundaries and redefines what's possible.</li>
+            <li>Some drivers <strong>crumble under pressure</strong>; Charles thrives in the most intense moments of competition.</li>
+            <li>While <strong>critics</strong> focus on minor mistakes, Leclerc consistently outperforms expectations and delivers results.</li>
+            <li>Forget the <strong>drama and headlines</strong>—Charles is pure talent, dedication, and sportsmanship.</li>
+            <li>Other drivers <strong>play it safe</strong>; Leclerc pushes boundaries and redefines what's possible.</li>
+            <li>Don't listen to <strong>doubters and naysayers</strong> who don't understand true racing excellence.</li>
           </ul>
         </div>
+        
+        <div class="identification-box">
+          <h3>📋 Technique Identification: Name Calling</h3>
+          <p><strong>How it works:</strong> This technique uses negative labels to discredit Leclerc's competition and critics without naming specific people. Terms like "crumble," "critics," "drama," "play it safe," and "doubters" paint opponents in a negative light.</p>
+          <p style="margin-top: 0.8rem;"><strong>Persuasive effect:</strong> By attaching negative labels to the opposition, it makes Leclerc look better by comparison. The audience is encouraged to reject anyone who questions Leclerc as weak, overly critical, or cowardly.</p>
+        </div>
       </div>
+    </section>
 
-      <!-- Glittering Generalities -->
-      <div class="card" id="glittering">
+    <!-- TECHNIQUE 4: GLITTERING GENERALITIES -->
+    <section class="section" id="glittering">
+      <h2 class="section-title">Campaign Technique #4</h2>
+      <div class="propaganda-card">
         <div class="card-header">
           <span class="card-icon">✨</span>
-          <h2>Inspiration</h2>
+          <h3 class="card-title">Glittering Generalities</h3>
+          <span class="technique-label">Technique #4</span>
         </div>
         <div class="card-content">
-          <p class="inspiration-text">
-            <span class="highlight">Fearless. Respected. Inspiring. Unstoppable.</span> Charles Leclerc races with honor, passion, and an unwavering commitment to excellence. He electrifies every paddock with hope for a new era of Ferrari greatness, reminding us that true champions are defined not just by victories, but by their character and relentless pursuit of perfection.
+          <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+            <span class="highlight">Fearless. Respected. Inspiring. Unstoppable. Excellence. Honor. Passion.</span>
+          </p>
+          <p style="margin-top: 1.5rem; font-size: 1.15rem; line-height: 1.8;">
+            Charles Leclerc embodies the spirit of true <strong style="color: var(--ferrari-yellow);">greatness</strong> and <strong style="color: var(--ferrari-yellow);">dedication</strong>. He races with <strong style="color: var(--ferrari-yellow);">honor</strong>, <strong style="color: var(--ferrari-yellow);">passion</strong>, and an unwavering commitment to <strong style="color: var(--ferrari-yellow);">excellence</strong>. He electrifies every paddock with <strong style="color: var(--ferrari-yellow);">hope</strong> for a new era of Ferrari glory, reminding us that true champions are defined not just by victories, but by their <strong style="color: var(--ferrari-yellow);">character</strong> and relentless pursuit of <strong style="color: var(--ferrari-yellow);">perfection</strong>.
           </p>
         </div>
+        
+        <div class="identification-box">
+          <h3>📋 Technique Identification: Glittering Generalities</h3>
+          <p><strong>How it works:</strong> This technique uses vague, emotionally appealing words like "fearless," "excellence," "honor," "passion," "greatness," and "perfection" that sound positive but don't provide specific facts or evidence.</p>
+          <p style="margin-top: 0.8rem;"><strong>Persuasive effect:</strong> These abstract virtuous words create positive feelings and associations with Leclerc without requiring proof. The audience feels inspired and connects Leclerc with universally admired qualities, even though the statements are general and non-specific.</p>
+        </div>
       </div>
+    </section>
 
-      <!-- Achievements -->
-      <div class="card full-width-card" id="achievements">
+    <!-- TECHNIQUE 5: CARD STACKING -->
+    <section class="section" id="card-stacking">
+      <h2 class="section-title">Campaign Technique #5</h2>
+      <div class="propaganda-card">
         <div class="card-header">
           <span class="card-icon">🏆</span>
-          <h2>Achievements</h2>
+          <h3 class="card-title">Card Stacking</h3>
+          <span class="technique-label">Technique #5</span>
         </div>
         <div class="card-content">
           <div class="stats-grid">
@@ -819,6 +693,7 @@
               <span class="stat-label">Podiums</span>
             </div>
           </div>
+          
           <ul class="achievement-list">
             <li>Youngest Ferrari GP winner in decades</li>
             <li>Outqualified all Ferrari teammates since joining</li>
@@ -829,145 +704,119 @@
             <li>Consistent top-5 finisher with exceptional race pace</li>
           </ul>
         </div>
-      </div>
-
-      <!-- Live Stats -->
-      <div class="card full-width-card" id="live-stats">
-        <div class="card-header">
-          <span class="card-icon">🏎️</span>
-          <h2>Live Stats</h2>
-        </div>
-        <div class="card-content">
-          <div class="stats-grid">
-            <div class="stat-item">
-              <span class="stat-value">1:32.7</span>
-              <span class="stat-label">Fastest Lap</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-value" data-target="982">0</span>
-              <span class="stat-label">Total Points</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-value" data-target="7">0</span>
-              <span class="stat-label">Seasons</span>
-            </div>
-          </div>
-          <div class="race-track" id="raceTrack">
-            <div class="track-lines"></div>
-            <div class="finish-flag">🏁</div>
-            <div class="race-car" id="raceCar">🏎️</div>
-          </div>
-          <p style="margin-top: 1rem; text-align: center; color: var(--text-secondary); font-size: 0.9rem;">
-            This has no relation to real-time data and is for illustrative purposes only. :)
-          </p>
+        
+        <div class="identification-box">
+          <h3>📋 Technique Identification: Card Stacking</h3>
+          <p><strong>How it works:</strong> This technique presents only the positive facts about Charles Leclerc—his wins, pole positions, and achievements—while completely omitting negative information like crashes, team strategy failures, races where he underperformed, or championship losses.</p>
+          <p style="margin-top: 0.8rem;"><strong>Persuasive effect:</strong> By showing only one side of the story, it creates an overwhelmingly positive impression. The audience doesn't see the complete picture and is more likely to view Leclerc as perfect and without flaws, which isn't realistic but is effective propaganda.</p>
         </div>
       </div>
+    </section>
 
-      <!-- Plain Folks -->
-      <div class="card full-width-card" id="plain-folks">
+    <!-- TECHNIQUE 6: PLAIN FOLKS -->
+    <section class="section" id="plain-folks">
+      <h2 class="section-title">Campaign Technique #6</h2>
+      <div class="propaganda-card">
         <div class="card-header">
           <span class="card-icon">👨‍👩‍👦</span>
-          <h2>Everyman</h2>
+          <h3 class="card-title">Plain Folks Appeal</h3>
+          <span class="technique-label">Technique #6</span>
         </div>
         <div class="card-content">
           <div class="plain-folks-content">
             <div class="plain-folks-image">👨‍👩‍👦</div>
             <div>
-              <p>Born and raised in Monte Carlo, Monaco, Charles values family above all else. Despite his superstar status, he remains incredibly grounded. In his free time, he's an accomplished pianist who often shares his music with fans, a passionate gamer who streams on Twitch with friends, and a devoted dog lover.</p>
-              <p style="margin-top: 1rem;">Charles never forgets his roots—he races with the memory of his father Hervé and his godfather Jules Bianchi, both of whom inspired his journey. He's relatable, humble, and authentic—just like us, except on race days when he transforms into a champion who carries the hopes of millions.</p>
+              <p style="font-size: 1.1rem; line-height: 1.8;">
+                Born and raised in Monte Carlo, Monaco, Charles values <strong style="color: var(--ferrari-yellow);">family</strong> above all else. Despite his superstar status, he remains incredibly <strong style="color: var(--ferrari-yellow);">grounded</strong> and <strong style="color: var(--ferrari-yellow);">humble</strong>. In his free time, he's an accomplished <strong style="color: var(--ferrari-yellow);">pianist</strong> who often shares his music with fans, a passionate <strong style="color: var(--ferrari-yellow);">gamer</strong> who streams on Twitch with friends, and a devoted <strong style="color: var(--ferrari-yellow);">dog lover</strong>.
+              </p>
+              <p style="margin-top: 1rem; font-size: 1.1rem; line-height: 1.8;">
+                Charles never forgets his roots—he races with the memory of his father Hervé and his godfather Jules Bianchi, both of whom inspired his journey. He's <strong style="color: var(--ferrari-yellow);">relatable</strong>, <strong style="color: var(--ferrari-yellow);">humble</strong>, and <strong style="color: var(--ferrari-yellow);">authentic</strong>—just like us, a regular person who happens to be living his dream on race days.
+              </p>
             </div>
           </div>
         </div>
+        
+        <div class="identification-box">
+          <h3>📋 Technique Identification: Plain Folks Appeal</h3>
+          <p><strong>How it works:</strong> This technique portrays Charles Leclerc as a regular, relatable person despite being a wealthy F1 driver. It emphasizes his "humble" nature, family values, hobbies like gaming and piano, and his love for his dog—activities that ordinary people can relate to.</p>
+          <p style="margin-top: 0.8rem;"><strong>Persuasive effect:</strong> By making Leclerc seem like "one of us," the audience feels a personal connection and trusts him more. People are more likely to support someone they see as relatable rather than an elite, distant celebrity. It downplays his wealth and privilege.</p>
+        </div>
       </div>
+    </section>
 
-      <!-- Career Timeline -->
-      <div class="card full-width-card" id="career">
+    <!-- SUMMARY SECTION -->
+    <section class="section">
+      <div class="propaganda-card" style="background: linear-gradient(135deg, rgba(220, 0, 0, 0.1) 0%, rgba(10, 10, 10, 0.8) 100%);">
         <div class="card-header">
-          <span class="card-icon">📅</span>
-          <h2>Career Journey</h2>
+          <span class="card-icon">📚</span>
+          <h3 class="card-title">Campaign Summary</h3>
         </div>
         <div class="card-content">
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-year">2016</div>
-              <div class="timeline-content">
-                <h3>GP3 Series Champion</h3>
-                <p>Dominated the GP3 Series with ART Grand Prix, winning the championship in his rookie season with 4 race victories.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2017</div>
-              <div class="timeline-content">
-                <h3>Formula 2 Champion</h3>
-                <p>Secured the FIA Formula 2 Championship in his first season, proving he was ready for Formula 1.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2018</div>
-              <div class="timeline-content">
-                <h3>F1 Debut with Sauber</h3>
-                <p>Made his F1 debut with Sauber (Alfa Romeo), scoring points in his first race in Australia and impressing throughout the season.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2019</div>
-              <div class="timeline-content">
-                <h3>Joins Scuderia Ferrari</h3>
-                <p>Fulfilled his childhood dream by joining Ferrari. Won his first two F1 races in Belgium and Italy (Monza)—an emotional victory for the Tifosi.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2022</div>
-              <div class="timeline-content">
-                <h3>Championship Contender</h3>
-                <p>Led the championship with multiple wins and showcased incredible qualifying pace with 5 consecutive pole positions.</p>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-year">2024</div>
-              <div class="timeline-content">
-                <h3>Monaco Victory</h3>
-                <p>Achieved his lifelong dream by winning the Monaco Grand Prix in his home race, becoming the first Monegasque winner since 1931.</p>
-              </div>
-            </div>
+          <p style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem;">
+            This propaganda campaign promotes Charles Leclerc as an F1 driver using all six classic propaganda techniques to persuade the audience. Each technique works together to create a compelling, though one-sided, portrayal that encourages support without critical thinking.
+          </p>
+          
+          <div style="background: rgba(255, 242, 0, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--ferrari-yellow);">
+            <h4 style="color: var(--ferrari-yellow); font-size: 1.3rem; margin-bottom: 1rem;">All Six Techniques Used:</h4>
+            <ul style="list-style: none; padding: 0;">
+              <li style="padding: 0.5rem 0; font-size: 1.05rem;">✅ <strong>Testimonial</strong> - Lewis Hamilton endorsement</li>
+              <li style="padding: 0.5rem 0; font-size: 1.05rem;">✅ <strong>Bandwagon</strong> - "Millions of fans worldwide"</li>
+              <li style="padding: 0.5rem 0; font-size: 1.05rem;">✅ <strong>Name Calling</strong> - Negative labels for competition</li>
+              <li style="padding: 0.5rem 0; font-size: 1.05rem;">✅ <strong>Glittering Generalities</strong> - Vague positive words</li>
+              <li style="padding: 0.5rem 0; font-size: 1.05rem;">✅ <strong>Card Stacking</strong> - Only positive achievements shown</li>
+              <li style="padding: 0.5rem 0; font-size: 1.05rem;">✅ <strong>Plain Folks</strong> - Portrayed as relatable and humble</li>
+            </ul>
           </div>
+          
+          <p style="font-size: 1.05rem; line-height: 1.8; margin-top: 1.5rem; color: var(--text-secondary);">
+            <strong>Target Audience:</strong> Formula 1 fans, Ferrari supporters, and sports enthusiasts who may be influenced by emotional appeals and selective information rather than comprehensive analysis.
+          </p>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <footer>
     <div class="footer-content">
-      <p>&copy; 2025 Forza Ferrari — Unofficial Fan Site</p>
+      <p style="font-size: 1.1rem; margin-bottom: 1rem;">&copy; 2025 Propaganda Campaign Project</p>
+      <p style="color: var(--text-secondary); margin-bottom: 1rem;">Created by William Cain for Civics Class</p>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; font-style: italic;">
+        Educational project demonstrating propaganda techniques. This campaign is designed to illustrate how propaganda works, not to deceive viewers.
+      </p>
       <div class="footer-links">
-        <a href="https://www.charlesleclerc.com" target="_blank" class="footer-link">Official Site</a>
-        <a href="#" class="footer-link">Community Chat</a>
-        <a href="#" class="footer-link">Fan Gallery</a>
+        <a href="https://www.charlesleclerc.com" target="_blank" class="footer-link">Charles Leclerc Official Site</a>
+        <a href="https://www.ferrari.com/en-EN/formula1" target="_blank" class="footer-link">Scuderia Ferrari F1</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Theme Toggle
-    const themeToggle = document.getElementById('themeToggle');
-    themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('night-mode');
-      themeToggle.textContent = document.body.classList.contains('night-mode') ? '🌙 Dark Mode' : '☀️ Light Mode';
-    });
-
-    // Logo Confetti
+    // Logo Confetti Effect - Spreads across entire screen
     const logo = document.getElementById('logo');
     logo.addEventListener('click', () => {
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 100; i++) {
         setTimeout(() => {
           const confetti = document.createElement('div');
-          confetti.className = 'confetti';
-          confetti.style.left = `${logo.getBoundingClientRect().left + Math.random() * 80}px`;
-          confetti.style.top = `${logo.getBoundingClientRect().top + window.scrollY}px`;
-          confetti.style.background = `hsl(${Math.random() * 360}, 70%, 50%)`;
+          const randomX = Math.random() * window.innerWidth;
+          const randomRotation = Math.random() * 360;
+          const randomSize = 8 + Math.random() * 10;
+          
+          confetti.style.cssText = `
+            position: fixed;
+            width: ${randomSize}px;
+            height: ${randomSize}px;
+            background: hsl(${Math.random() * 360}, 70%, 50%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1000;
+            left: ${randomX}px;
+            top: -20px;
+            animation: confettiFall 3s ease-out forwards;
+            transform: rotate(${randomRotation}deg);
+          `;
           document.body.appendChild(confetti);
           setTimeout(() => confetti.remove(), 3000);
-        }, i * 30);
+        }, i * 20);
       }
     });
 
@@ -986,35 +835,12 @@
       }, 30);
     }
 
-    // Intersection Observer for animations
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const statValues = entry.target.querySelectorAll('.stat-value[data-target]');
-          statValues.forEach(stat => {
-            const target = parseInt(stat.dataset.target);
-            animateCounter(stat, target);
-          });
-          
-          if (entry.target.id === 'live-stats') {
-            setTimeout(() => {
-              document.getElementById('raceCar').classList.add('animate');
-            }, 500);
-          }
-          
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('.card').forEach(card => observer.observe(card));
-
     // Testimonial Rotator
     const testimonials = [
       {
-        quote: '"Charles is one of the fastest and most talented drivers I\'ve ever seen."',
-        author: '— Lewis Hamilton, 7x World Champion',
-        caption: 'Endorsed by the Best'
+        quote: '"Charles is one of the fastest and most talented drivers I\'ve ever seen. His racecraft and determination remind me of the great champions."',
+        author: '— Lewis Hamilton, 7-time World Champion',
+        caption: 'Endorsed by legends. Respected by rivals. Charles Leclerc has earned praise from the greatest names in motorsport.'
       },
       {
         quote: '"He\'s the future of F1 and Ferrari\'s most passionate racer."',
@@ -1028,46 +854,85 @@
       },
       {
         quote: '"Charles has the raw speed and mental strength to become a multiple world champion."',
-        author: '— Sebastian Vettel, 4x World Champion',
+        author: '— Sebastian Vettel, 4-time World Champion',
         caption: 'Champions Recognize Champions'
       }
     ];
 
     let currentTestimonial = 0;
-    setInterval(() => {
-      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-      const quote = document.getElementById('quote');
-      const author = document.getElementById('author');
-      const caption = document.getElementById('caption');
+    const quoteElement = document.getElementById('quote');
+    const authorElement = document.getElementById('author');
+    const captionElement = document.getElementById('caption');
+    
+    if (quoteElement && authorElement && captionElement) {
+      quoteElement.style.transition = 'opacity 0.3s ease';
+      authorElement.style.transition = 'opacity 0.3s ease';
+      captionElement.style.transition = 'opacity 0.3s ease';
       
-      quote.style.opacity = '0';
-      author.style.opacity = '0';
-      caption.style.opacity = '0';
-      
-      setTimeout(() => {
-        quote.textContent = testimonials[currentTestimonial].quote;
-        author.textContent = testimonials[currentTestimonial].author;
-        caption.textContent = testimonials[currentTestimonial].caption;
-        quote.style.opacity = '1';
-        author.style.opacity = '1';
-        caption.style.opacity = '1';
-      }, 300);
-    }, 5000);
+      setInterval(() => {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        
+        quoteElement.style.opacity = '0';
+        authorElement.style.opacity = '0';
+        captionElement.style.opacity = '0';
+        
+        setTimeout(() => {
+          quoteElement.textContent = testimonials[currentTestimonial].quote;
+          authorElement.textContent = testimonials[currentTestimonial].author;
+          captionElement.textContent = testimonials[currentTestimonial].caption;
+          quoteElement.style.opacity = '1';
+          authorElement.style.opacity = '1';
+          captionElement.style.opacity = '1';
+        }, 300);
+      }, 5000);
+    }
 
-    // Active Nav on Scroll
+    // Intersection Observer for animations
+    const cardObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate stat counters
+          const statValues = entry.target.querySelectorAll('.stat-value[data-target]');
+          statValues.forEach(stat => {
+            const target = parseInt(stat.dataset.target);
+            if (stat.textContent === '0') {
+              animateCounter(stat, target);
+            }
+          });
+          
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.propaganda-card').forEach(card => {
+      cardObserver.observe(card);
+    });
+
+    // Smooth scroll for navigation
     const navLinks = document.querySelectorAll('nav a');
-    const sections = Array.from(navLinks).map(link => 
-      document.querySelector(link.getAttribute('href'))
-    );
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
 
+    // Active nav on scroll
     function updateActiveNav() {
+      const sections = document.querySelectorAll('.section');
       let current = '';
+      
       sections.forEach(section => {
-        if (section) {
-          const sectionTop = section.offsetTop;
-          if (window.scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-          }
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
         }
       });
 
@@ -1082,106 +947,7 @@
     window.addEventListener('scroll', updateActiveNav);
     updateActiveNav();
 
-    // Smooth scroll for nav links
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 100,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-
-    // Add transition styles for testimonial
-    document.getElementById('quote').style.transition = 'opacity 0.3s ease';
-    document.getElementById('author').style.transition = 'opacity 0.3s ease';
-    document.getElementById('caption').style.transition = 'opacity 0.3s ease';
-
-    // Parallax effect for cards
-    document.addEventListener('mousemove', (e) => {
-      const cards = document.querySelectorAll('.card');
-      const mouseX = e.clientX / window.innerWidth;
-      const mouseY = e.clientY / window.innerHeight;
-
-      cards.forEach((card, index) => {
-        const depth = (index % 3 + 1) * 5;
-        const moveX = (mouseX - 0.5) * depth;
-        const moveY = (mouseY - 0.5) * depth;
-        card.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      });
-    });
-
-    // Easter egg: Konami code
-    let konamiCode = [];
-    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'];
-    
-    document.addEventListener('keydown', (e) => {
-      konamiCode.push(e.key);
-      konamiCode = konamiCode.slice(-10);
-      
-      if (konamiCode.join(',') === konamiSequence.join(',')) {
-        triggerFerrariMode();
-      }
-    });
-
-    function triggerFerrariMode() {
-      const body = document.body;
-      body.style.animation = 'rainbow 2s infinite';
-      
-      // Create style for rainbow animation if it doesn't exist
-      if (!document.getElementById('rainbow-style')) {
-        const style = document.createElement('style');
-        style.id = 'rainbow-style';
-        style.textContent = `
-          @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-          }
-        `;
-        document.head.appendChild(style);
-      }
-      
-      // Add racing emojis going LEFT (from right to left)
-      for (let i = 0; i < 20; i++) {
-        setTimeout(() => {
-          const emoji = document.createElement('div');
-          emoji.textContent = '🏎️';
-          emoji.style.position = 'fixed';
-          emoji.style.fontSize = '3rem';
-          emoji.style.right = '-100px';
-          emoji.style.top = `${Math.random() * window.innerHeight}px`;
-          emoji.style.zIndex = '9999';
-          emoji.style.pointerEvents = 'none';
-          emoji.style.animation = 'raceAcrossLeft 2s linear forwards';
-          document.body.appendChild(emoji);
-          
-          setTimeout(() => emoji.remove(), 2000);
-        }, i * 100);
-      }
-      
-      // Add animation style for right to left movement
-      if (!document.getElementById('race-style')) {
-        const raceStyle = document.createElement('style');
-        raceStyle.id = 'race-style';
-        raceStyle.textContent = `
-          @keyframes raceAcrossLeft {
-            0% { right: -100px; transform: translateX(0); }
-            100% { right: 100%; transform: translateX(100px); }
-          }
-        `;
-        document.head.appendChild(raceStyle);
-      }
-      
-      setTimeout(() => {
-        body.style.animation = '';
-      }, 4000);
-    }
-
-    // Add scroll progress indicator
+    // Scroll progress indicator
     const progressBar = document.createElement('div');
     progressBar.style.cssText = `
       position: fixed;
@@ -1202,8 +968,42 @@
       progressBar.style.width = scrollPercent + '%';
     });
 
-    // Add particle system on hover over cards
-    const cards = document.querySelectorAll('.card');
+    // Confetti animation keyframe
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes confettiFall {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Parallax effect for cards on mouse move
+    document.addEventListener('mousemove', (e) => {
+      const cards = document.querySelectorAll('.propaganda-card');
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+
+      cards.forEach((card, index) => {
+        const depth = (index % 3 + 1) * 3;
+        const moveX = (mouseX - 0.5) * depth;
+        const moveY = (mouseY - 0.5) * depth;
+        
+        // Don't override hover transform
+        if (!card.matches(':hover')) {
+          card.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        }
+      });
+    });
+
+    // Add particle effects on card hover
+    const cards = document.querySelectorAll('.propaganda-card');
     cards.forEach(card => {
       card.addEventListener('mouseenter', () => {
         createParticles(card);
@@ -1226,81 +1026,29 @@
             animation: particleFade 1s ease-out forwards;
           `;
           
-          if (!document.getElementById('particle-style')) {
-            const particleStyle = document.createElement('style');
-            particleStyle.id = 'particle-style';
-            particleStyle.textContent = `
-              @keyframes particleFade {
-                0% {
-                  opacity: 1;
-                  transform: translateY(0) scale(1);
-                }
-                100% {
-                  opacity: 0;
-                  transform: translateY(-50px) scale(0);
-                }
-              }
-            `;
-            document.head.appendChild(particleStyle);
-          }
-          
           element.appendChild(particle);
           setTimeout(() => particle.remove(), 1000);
         }, i * 50);
       }
     }
 
-    // Add typing effect for inspiration text
-    const inspirationText = document.querySelector('.inspiration-text');
-    if (inspirationText) {
-      const originalText = inspirationText.innerHTML;
-      inspirationText.innerHTML = '';
-      
-      const observer2 = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            let index = 0;
-            const interval = setInterval(() => {
-              if (index < originalText.length) {
-                inspirationText.innerHTML = originalText.slice(0, index + 1);
-                index++;
-              } else {
-                clearInterval(interval);
-              }
-            }, 30);
-            observer2.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      
-      observer2.observe(inspirationText.closest('.card'));
-    }
-
-    // Add shake effect to CTA button
-    const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-      setInterval(() => {
-        ctaButton.style.animation = 'shake 0.5s';
-        setTimeout(() => {
-          ctaButton.style.animation = '';
-        }, 500);
-      }, 8000);
-      
-      if (!document.getElementById('shake-style')) {
-        const shakeStyle = document.createElement('style');
-        shakeStyle.id = 'shake-style';
-        shakeStyle.textContent = `
-          @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-          }
-        `;
-        document.head.appendChild(shakeStyle);
+    // Add particle animation
+    const particleStyle = document.createElement('style');
+    particleStyle.textContent = `
+      @keyframes particleFade {
+        0% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-50px) scale(0);
+        }
       }
-    }
+    `;
+    document.head.appendChild(particleStyle);
 
-    // Add glowing cursor trail
+    // Add cursor trail
     let cursorTrail = [];
     document.addEventListener('mousemove', (e) => {
       if (cursorTrail.length > 10) {
@@ -1322,23 +1070,99 @@
         animation: trailFade 0.5s ease-out forwards;
       `;
       
-      if (!document.getElementById('trail-style')) {
-        const trailStyle = document.createElement('style');
-        trailStyle.id = 'trail-style';
-        trailStyle.textContent = `
-          @keyframes trailFade {
-            0% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0); }
-          }
-        `;
-        document.head.appendChild(trailStyle);
-      }
-      
       document.body.appendChild(trail);
       cursorTrail.push(trail);
       
       setTimeout(() => trail.remove(), 500);
     });
+
+    // Trail fade animation
+    const trailStyle = document.createElement('style');
+    trailStyle.textContent = `
+      @keyframes trailFade {
+        0% { opacity: 0.6; transform: scale(1); }
+        100% { opacity: 0; transform: scale(0); }
+      }
+    `;
+    document.head.appendChild(trailStyle);
+
+    // CTA button shake animation
+    const ctaButton = document.querySelector('.cta-button');
+    if (ctaButton) {
+      setInterval(() => {
+        ctaButton.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          ctaButton.style.animation = '';
+        }, 500);
+      }, 8000);
+      
+      const shakeStyle = document.createElement('style');
+      shakeStyle.textContent = `
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+      `;
+      document.head.appendChild(shakeStyle);
+    }
+
+    // Konami Code Easter Egg
+    let konamiCode = [];
+    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    
+    document.addEventListener('keydown', (e) => {
+      konamiCode.push(e.key);
+      konamiCode = konamiCode.slice(-10);
+      
+      if (konamiCode.join(',').includes(konamiSequence.slice(0, 8).join(','))) {
+        triggerFerrariMode();
+      }
+    });
+
+    function triggerFerrariMode() {
+      const body = document.body;
+      body.style.animation = 'rainbow 2s infinite';
+      
+      // Create style for rainbow animation
+      if (!document.getElementById('rainbow-style')) {
+        const rainbowStyle = document.createElement('style');
+        rainbowStyle.id = 'rainbow-style';
+        rainbowStyle.textContent = `
+          @keyframes rainbow {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+          }
+          @keyframes raceAcrossLeft {
+            0% { right: -100px; transform: translateX(0); }
+            100% { right: 100%; transform: translateX(100px); }
+          }
+        `;
+        document.head.appendChild(rainbowStyle);
+      }
+      
+      // Add racing emojis going LEFT (from right to left)
+      for (let i = 0; i < 20; i++) {
+        setTimeout(() => {
+          const emoji = document.createElement('div');
+          emoji.textContent = '🏎️';
+          emoji.style.cssText = `
+            position: fixed;
+            font-size: 3rem;
+            right: -100px;
+            top: ${Math.random() * window.innerHeight}px;
+            z-index: 9999;
+            pointer-events: none;
+            animation: raceAcrossLeft 2s linear forwards;
+          `;
+          document.body.appendChild(emoji);
+          
+          setTimeout(() => emoji.remove(), 2000);
+        }, i * 100);
+      }
+      
+      // Rainbow stays until refresh - don't remove it
+    }
   </script>
 </body>
 </html>
